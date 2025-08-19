@@ -24,7 +24,8 @@ const LoginForm = () => {
     'admin@company.com': { password: 'Admin@123', role: 'admin', name: 'System Administrator' },
     'hr@company.com': { password: 'HR@123', role: 'hr', name: 'HR Manager' },
     'manager@company.com': { password: 'Manager@123', role: 'manager', name: 'Team Manager' },
-    'employee@company.com': { password: 'Employee@123', role: 'employee', name: 'John Employee' }
+    'employee@company.com': { password: 'Employee@123', role: 'employee', name: 'John Employee' },
+    'auditor@company.com': { password: 'Auditor@123', role: 'auditor', name: 'Compliance Auditor' }
   };
 
   const validateForm = () => {
@@ -38,8 +39,8 @@ const LoginForm = () => {
     
     if (!formData?.password) {
       newErrors.password = 'Password is required';
-    } else if (formData?.password?.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+    } else if (formData?.password?.length < 12) {
+      newErrors.password = 'Password must be at least 12 characters with uppercase, lowercase, number, and symbol';
     }
 
     if (showMFA && !mfaCode) {
@@ -94,7 +95,7 @@ const LoginForm = () => {
       }
 
       // Check if MFA is required (simulate for admin and hr roles)
-      if ((user?.role === 'admin' || user?.role === 'hr') && !showMFA) {
+      if ((user?.role === 'admin' || user?.role === 'hr' || user?.role === 'auditor') && !showMFA) {
         setShowMFA(true);
         setErrors({ mfaCode: 'Please enter the 6-digit code sent to your registered device' });
         return;
@@ -278,8 +279,12 @@ const LoginForm = () => {
               <span className="font-medium">Employee:</span>
               <span className="font-mono">employee@company.com / Employee@123</span>
             </div>
+            <div className="grid grid-cols-2 gap-2">
+              <span className="font-medium">Auditor:</span>
+              <span className="font-mono">auditor@company.com / Auditor@123</span>
+            </div>
             <p className="text-xs text-muted-foreground/80 mt-2">
-              * Admin & HR roles require MFA code: <span className="font-mono font-medium">123456</span>
+              * Admin, HR & Auditor roles require MFA code: <span className="font-mono font-medium">123456</span>
             </p>
           </div>
         </div>

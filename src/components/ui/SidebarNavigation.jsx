@@ -16,32 +16,39 @@ const SidebarNavigation = ({ isCollapsed = false, onToggle, userRole = 'employee
       tooltip: 'Overview and quick actions'
     },
     {
-      label: 'My Profile',
+      label: 'Employee Directory',
+      path: '/employee-directory',
+      icon: 'Users',
+      roles: ['admin', 'hr', 'manager'],
+      tooltip: 'Browse and manage employees'
+    },
+    {
+      label: 'Profile Management',
       path: '/employee-profile-management',
       icon: 'User',
       roles: ['admin', 'hr', 'manager', 'employee'],
       tooltip: 'Manage personal information'
     },
     {
-      label: 'Time & Attendance',
+      label: 'Attendance & Leave',
       path: '/attendance-tracking',
       icon: 'Clock',
       roles: ['admin', 'hr', 'manager', 'employee'],
-      tooltip: 'Track time and attendance'
+      tooltip: 'Track attendance and manage leave'
     },
     {
-      label: 'Leave Management',
-      path: '/leave-management',
-      icon: 'Calendar',
+      label: 'Timesheets & Performance',
+      path: '/timesheets-performance',
+      icon: 'Target',
       roles: ['admin', 'hr', 'manager', 'employee'],
-      tooltip: 'Request and manage leave'
+      tooltip: 'Log time and track performance'
     },
     {
-      label: 'Administration',
-      path: '/system-administration',
+      label: 'Admin & Reports',
+      path: '/admin-reports',
       icon: 'Settings',
-      roles: ['admin'],
-      tooltip: 'System configuration and user management'
+      roles: ['admin', 'hr'],
+      tooltip: 'System administration and reports'
     }
   ];
 

@@ -16,28 +16,28 @@ const QuickActionsCard = ({ userRole }) => {
       roles: ['employee', 'manager', 'hr', 'admin']
     },
     {
-      id: 'leave-request',
-      label: 'Request Leave',
-      icon: 'Calendar',
+      id: 'timesheet',
+      label: 'Submit Timesheet',
+      icon: 'FileText',
       color: 'bg-accent',
-      action: () => navigate('/leave-management'),
+      action: () => navigate('/timesheets-performance'),
       roles: ['employee', 'manager', 'hr', 'admin']
     },
     {
-      id: 'profile',
-      label: 'My Profile',
-      icon: 'User',
+      id: 'directory',
+      label: 'Employee Directory',
+      icon: 'Users',
       color: 'bg-secondary',
-      action: () => navigate('/employee-profile-management'),
-      roles: ['employee', 'manager', 'hr', 'admin']
+      action: () => navigate('/employee-directory'),
+      roles: ['manager', 'hr', 'admin']
     },
     {
-      id: 'admin',
-      label: 'Administration',
+      id: 'reports',
+      label: 'Reports & Analytics',
       icon: 'Settings',
       color: 'bg-warning',
-      action: () => navigate('/system-administration'),
-      roles: ['admin']
+      action: () => navigate('/admin-reports'),
+      roles: ['admin', 'hr', 'auditor']
     }
   ];
 

@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import LoginHeader from './components/LoginHeader';
 import LoginForm from './components/LoginForm';
 import SecurityBadge from './components/SecurityBadge';
 import SystemStatus from './components/SystemStatus';
+import ThemeToggle from '../../components/ui/ThemeToggle';
 
 const LoginScreen = () => {
   const navigate = useNavigate();
@@ -26,7 +28,17 @@ const LoginScreen = () => {
   }, [navigate]);
 
   return (
+    <>
+      <Helmet>
+        <title>Login - Enterprise EMS</title>
+        <meta name="description" content="Secure login to Enterprise Employee Management System" />
+      </Helmet>
     <div className="min-h-screen bg-background">
+      {/* Theme Toggle */}
+      <div className="absolute top-4 right-4 z-20">
+        <ThemeToggle />
+      </div>
+      
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(61,64,91,0.1)_0%,transparent_50%)]"></div>
@@ -95,6 +107,7 @@ const LoginScreen = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

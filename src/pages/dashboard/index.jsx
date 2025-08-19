@@ -239,12 +239,12 @@ const Dashboard = () => {
             color: 'warning'
           },
           {
-            title: 'New Hires',
-            value: '8',
+            title: 'Payroll Total',
+            value: '$1.2M',
             subtitle: 'This month',
-            icon: 'UserPlus',
+            icon: 'DollarSign',
             trend: 'up',
-            trendValue: '+33%',
+            trendValue: '+2.1%',
             color: 'accent'
           }
         ];
@@ -267,19 +267,19 @@ const Dashboard = () => {
             color: 'success'
           },
           {
-            title: 'Pending Reviews',
-            value: '3',
-            subtitle: 'Performance reviews',
-            icon: 'FileText',
+            title: 'Tasks Assigned',
+            value: '8',
+            subtitle: 'Active tasks',
+            icon: 'CheckSquare',
             color: 'warning'
           },
           {
-            title: 'Team Utilization',
-            value: '87%',
-            subtitle: 'Current sprint',
-            icon: 'TrendingUp',
+            title: 'OKR Progress',
+            value: '71%',
+            subtitle: 'Q1 objectives',
+            icon: 'Target',
             trend: 'up',
-            trendValue: '+3%',
+            trendValue: '+5%',
             color: 'accent'
           }
         ];
@@ -300,20 +300,58 @@ const Dashboard = () => {
             color: 'success'
           },
           {
-            title: 'Tasks Completed',
-            value: '24',
+            title: 'Timesheet Hours',
+            value: '38.5h',
             subtitle: 'This week',
-            icon: 'CheckSquare',
+            icon: 'Clock',
             trend: 'up',
-            trendValue: '+12%',
+            trendValue: '+2h',
             color: 'accent'
           },
           {
-            title: 'Performance',
+            title: 'Tasks Assigned',
+            value: '6',
+            subtitle: 'Active tasks',
+            icon: 'CheckSquare',
+            color: 'accent'
+          },
+          {
+            title: 'Performance Rating',
             value: '4.2',
             subtitle: 'Rating (out of 5)',
             icon: 'Star',
             color: 'secondary'
+          }
+        ];
+      case 'auditor':
+        return [
+          {
+            title: 'Compliance Score',
+            value: '98.5%',
+            subtitle: 'Overall compliance',
+            icon: 'Shield',
+            color: 'success'
+          },
+          {
+            title: 'Audit Findings',
+            value: '3',
+            subtitle: 'Open findings',
+            icon: 'AlertTriangle',
+            color: 'warning'
+          },
+          {
+            title: 'Reports Generated',
+            value: '15',
+            subtitle: 'This month',
+            icon: 'FileText',
+            color: 'primary'
+          },
+          {
+            title: 'Data Accuracy',
+            value: '99.2%',
+            subtitle: 'System integrity',
+            icon: 'Database',
+            color: 'accent'
           }
         ];
     }

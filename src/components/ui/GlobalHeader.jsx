@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '../AppIcon';
 import Button from './Button';
+import ThemeToggle from './ThemeToggle';
 
 const GlobalHeader = ({ onSidebarToggle, user = null, notifications = [] }) => {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -51,6 +52,9 @@ const GlobalHeader = ({ onSidebarToggle, user = null, notifications = [] }) => {
 
         {/* Right Section - Actions */}
         <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <ThemeToggle />
+          
           {/* Notifications */}
           <div className="relative">
             <Button

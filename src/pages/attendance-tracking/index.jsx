@@ -121,10 +121,10 @@ const AttendanceTracking = () => {
           {/* Page Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-2">
-              Attendance Tracking
+              Attendance & Leave Management
             </h1>
             <p className="text-muted-foreground">
-              Track your time, manage breaks, and view attendance history
+              Track attendance, manage breaks, request leave, and view team calendar
             </p>
           </div>
 
@@ -132,7 +132,12 @@ const AttendanceTracking = () => {
           <div className="mb-6">
             <div className="border-b border-border">
               <nav className="flex space-x-8">
-                {tabItems?.map((tab) => (
+                {[
+                  { id: 'overview', label: 'Overview', icon: 'LayoutDashboard' },
+                  { id: 'calendar', label: 'Calendar', icon: 'Calendar' },
+                  { id: 'leave', label: 'Leave Management', icon: 'Calendar' },
+                  { id: 'schedule', label: 'Schedule', icon: 'Clock' }
+                ].map((tab) => (
                   <button
                     key={tab?.id}
                     onClick={() => setActiveTab(tab?.id)}
@@ -195,6 +200,75 @@ const AttendanceTracking = () => {
             </div>
           )}
 
+          {activeTab === 'leave' && (
+            <div className="space-y-6">
+              {/* Leave Balance Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { type: 'Vacation', available: 15, total: 20, color: 'bg-success' },
+                  { type: 'Sick Leave', available: 8, total: 12, color: 'bg-warning' },
+                  { type: 'Personal', available: 5, total: 8, color: 'bg-accent' }
+                ].map((leave, index) => (
+                  <div key={index} className="bg-card rounded-lg border border-border p-6 shadow-soft">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-12 h-12 ${leave.color} rounded-lg flex items-center justify-center`}>
+                        <Icon name="Calendar" size={24} color="white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground">{leave.type}</h3>
+                        <p className="text-sm text-muted-foreground">{leave.available} of {leave.total} days</p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div 
+                        className={`h-2 rounded-full ${leave.color}`}
+                        style={{ width: `${(leave.available / leave.total) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Leave Request Form */}
+              <div className="bg-card rounded-lg border border-border p-6 shadow-soft">
+                <h3 className="text-xl font-semibold text-foreground mb-6">Request Leave</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Select
+                    label="Leave Type"
+                    options={[
+                      { value: 'vacation', label: 'Vacation Leave' },
+                      { value: 'sick', label: 'Sick Leave' },
+                      { value: 'personal', label: 'Personal Leave' }
+                    ]}
+                    placeholder="Select leave type"
+                  />
+                  <Input label="Start Date" type="date" />
+                  <Input label="End Date" type="date" />
+                  <Select
+                    label="Duration"
+                    options={[
+                      { value: 'full', label: 'Full Day' },
+                      { value: 'half', label: 'Half Day' }
+                    ]}
+                    placeholder="Select duration"
+                  />
+                </div>
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-foreground mb-2">Reason</label>
+                  <textarea
+                    placeholder="Enter reason for leave..."
+                    rows={3}
+                    className="w-full px-3 py-2 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  />
+                </div>
+                <div className="flex justify-end mt-6">
+                  <Button iconName="Send" iconPosition="left">
+                    Submit Request
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
           {activeTab === 'schedule' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ShiftSchedule
@@ -210,15 +284,6 @@ const AttendanceTracking = () => {
             </div>
           )}
 
-          {activeTab === 'location' && (
-            <div className="max-w-4xl">
-              <LocationMap
-                allowedLocations={[]}
-                currentLocation={currentLocation}
-                onLocationUpdate={handleLocationUpdate}
-              />
-            </div>
-          )}
         </div>
       </main>
     </div>
